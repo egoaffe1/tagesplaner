@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tagesplaner</title>
+<meta name="theme-color" content="#1e2a4a">
+<meta name="description" content="Plane jeden Abend deinen nächsten Tag.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tagesplaner">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="updateBar" class="update-bar" hidden>
+  Neue Version verfügbar <button id="updateBtn">Jetzt aktualisieren</button>
+</div>
+
+<header class="topbar">
+  <h1>Tagesplaner</h1>
+  <button id="menuBtn" class="icon-btn" aria-label="Menü">⋯</button>
+</header>
+
+<main id="view"></main>
+
+<nav class="tabbar">
+  <button data-tab="day" class="active"><span>🌙</span>Planen</button>
+  <button data-tab="cal"><span>📅</span>Kalender</button>
+  <button data-tab="notes"><span>📝</span>Notizen</button>
+</nav>
+
+<dialog id="eventDlg">
+  <form method="dialog" id="eventForm">
+    <h2 id="eventDlgTitle">Termin</h2>
+    <label>Titel<input id="evTitle" required maxlength="120" autocomplete="off"></label>
+    <label>Datum<input id="evDate" type="date" required></label>
+    <div class="row">
+      <label>Von<input id="evStart" type="time"></label>
+      <label>Bis<input id="evEnd" type="time"></label>
+    </div>
+    <label>Notiz<textarea id="evNote" rows="2"></textarea></label>
+    <div class="dlg-actions">
+      <button type="button" id="evDelete" class="danger">Löschen</button>
+      <span class="spacer"></span>
+      <button type="button" id="evCancel">Abbrechen</button>
+      <button type="submit" class="primary">Speichern</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="menuDlg">
+  <h2>Daten</h2>
+  <p class="hint">Deine Daten liegen nur auf diesem Gerät. Mit Export/Import kannst du sie sichern oder auf ein anderes Gerät übertragen.</p>
+  <div class="menu-actions">
+    <button id="exportBtn" class="primary">Backup exportieren</button>
+    <button id="importBtn">Backup importieren</button>
+    <input type="file" id="importFile" accept="application/json" hidden>
+  </div>
+  <div class="dlg-actions"><span class="spacer"></span><button id="menuClose">Schließen</button></div>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>
